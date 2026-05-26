@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniVault — Gestão de Encomendas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header id="app-header">
+    <h1 class="app-title">OmniVault</h1>
+    <div class="profile-switcher">
+      <button type="button" id="btn-profile-estafeta" class="profile-btn active" data-profile="estafeta">
+        Área do Estafeta
+      </button>
+      <button type="button" id="btn-profile-cliente" class="profile-btn" data-profile="cliente">
+        Área do Cliente
+      </button>
+    </div>
+  </header>
+
+  <main id="app-main">
+
+    <!-- ESTAFETA: Login -->
+    <section id="view-login" class="view active-view">
+      <div class="view-card">
+        <div class="view-card-header">
+          <h2>Acesso Estafeta</h2>
+          <p>Autentique-se para gerir depósitos de encomendas</p>
+        </div>
+        <form id="form-login" novalidate>
+          <div class="form-group">
+            <label for="input-username">Utilizador</label>
+            <input type="text" id="input-username" placeholder="estafeta1" autocomplete="username" required />
+          </div>
+          <div class="form-group">
+            <label for="input-password">Password</label>
+            <input type="password" id="input-password" placeholder="••••••••••••" autocomplete="current-password" required />
+          </div>
+          <p id="login-error" class="error-msg hidden" role="alert">Credenciais inválidas. Tente novamente.</p>
+          <button type="submit" id="btn-login-submit" class="btn btn-primary btn-full">Entrar</button>
+        </form>
+        <p class="hint-box">Teste: <code>estafeta1</code> / <code>passwordetft1</code></p>
+      </div>
+    </section>
+
+    <!-- ESTAFETA: Seleção de tamanho -->
+    <section id="view-selection" class="view hidden">
+      <div class="view-header">
+        <h2>Selecionar Cacifo</h2>
+        <p>Escolha o tamanho adequado para a encomenda</p>
+      </div>
+      <div class="size-grid">
+        <article class="size-card">
+          <span class="size-badge">S</span>
+          <h3>Pequeno</h3>
+          <p class="size-desc">Envelopes e documentos</p>
+          <p class="size-availability"><span id="count-s">0</span> livres</p>
+          <button type="button" id="btn-size-s" class="btn btn-secondary btn-full" data-size="S">Reservar S</button>
+        </article>
+        <article class="size-card size-card--featured">
+          <span class="size-badge">M</span>
+          <h3>Médio</h3>
+          <p class="size-desc">Caixas standard</p>
+          <p class="size-availability"><span id="count-m">0</span> livres</p>
+          <button type="button" id="btn-size-m" class="btn btn-secondary btn-full" data-size="M">Reservar M</button>
+        </article>
+        <article class="size-card">
+          <span class="size-badge">L</span>
+          <h3>Grande</h3>
+          <p class="size-desc">Volumes grandes</p>
+          <p class="size-availability"><span id="count-l">0</span> livres</p>
+          <button type="button" id="btn-size-l" class="btn btn-secondary btn-full" data-size="L">Reservar L</button>
+        </article>
+      </div>
+      <button type="button" id="btn-logout" class="btn btn-ghost">← Sair</button>
+    </section>
+
+    <!-- ESTAFETA: Depósito -->
+    <section id="view-deposit" class="view hidden">
+      <div class="view-card view-card--center">
+        <div class="status-badge status-badge--open">Porta aberta</div>
+        <p id="deposit-status-msg" class="deposit-status-msg">Cacifo #00 Aberto com sucesso.</p>
+        <p class="deposit-hint">Coloque a encomenda no cacifo e feche a porta física antes de confirmar.</p>
+        <button type="button" id="btn-confirm-deposit" class="btn btn-primary btn-full">
+          Confirmar Depósito (Fechar Porta)
+        </button>
+      </div>
+    </section>
+
+    <!-- CLIENTE: PIN, recolha e agradecimento -->
+    <section id="view-client" class="view hidden">
+
+      <div id="client-pin-panel" class="view-card">
+        <div class="view-card-header">
+          <h2>Levantamento</h2>
+          <p>Introduza o token de 6 dígitos recebido por SMS</p>
+        </div>
+        <div class="form-group">
+          <label for="input-client-pin">Token</label>
+          <input
+            type="text"
+            id="input-client-pin"
+            class="pin-input"
+            placeholder="000000"
+            maxlength="6"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            autocomplete="one-time-code"
+          />
+        </div>
+        <p id="pin-error" class="error-msg hidden" role="alert">Código inválido ou já utilizado.</p>
+        <button type="button" id="btn-validate-pin" class="btn btn-primary btn-full">Validar Código</button>
+      </div>
+
+      <div id="client-collect-panel" class="view-card view-card--center hidden">
+        <div class="status-badge status-badge--open">Porta aberta</div>
+        <h2 class="success-title">Sucesso!</h2>
+        <p id="collect-status-msg" class="collect-status-msg">
+          A porta do Cacifo <strong>#00</strong> está aberta.
+        </p>
+        <p class="collect-hint">Retire a encomenda e feche a porta.</p>
+        <button type="button" id="btn-confirm-collection" class="btn btn-primary btn-full">
+          Confirmar Fecho da Porta
+        </button>
+      </div>
+
+      <div id="client-thankyou-panel" class="view-card view-card--center hidden">
+        <div class="thankyou-icon" aria-hidden="true">✓</div>
+        <h2 class="thankyou-title">Obrigado!</h2>
+        <p class="thankyou-text">A sua encomenda foi levantada com sucesso.</p>
+        <button type="button" id="btn-new-collection" class="btn btn-primary btn-full">Novo Levantamento</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Modal SMS -->
+  <div id="modal-sms" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="sms-dialog-title">
+    <div class="modal-box">
+      <h3 id="sms-dialog-title" class="visually-hidden">Notificação SMS</h3>
+      <div class="sms-phone">
+        <div class="sms-screen">
+          <header class="sms-header">
+            <span class="sms-avatar">OV</span>
+            <div>
+              <strong>OmniVault</strong>
+              <span id="sms-time" class="sms-time">agora</span>
+            </div>
+          </header>
+          <div class="sms-label">Mensagem recebida</div>
+          <p id="sms-message-text" class="sms-bubble"></p>
+        </div>
+      </div>
+      <button type="button" id="btn-close-modal" class="btn btn-primary">Fechar</button>
+    </div>
+  </div>
+
+  <footer id="api-debug-console" aria-label="Consola de debug da API">
+    <div class="console-toolbar">
+      <span>OmniVault API Console</span>
+      <div id="console-demo-code" class="console-demo-code hidden">
+        Demo PIN: <code id="console-demo-code-value">------</code><span id="console-demo-locker-ref"></span>
+      </div>
+      <button type="button" id="btn-clear-console" class="console-clear">clear</button>
+    </div>
+    <div id="console-log-area" class="console-body">
+      <div class="log-line log-system">[ OmniVault API Console initialized. Awaiting requests... ]</div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
