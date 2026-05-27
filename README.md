@@ -1,8 +1,8 @@
-# OmniVault — Sistema Integrado de Gestão de Cacifos Inteligentes (Vilar)
+# OmniVault — Sistema Integrado de Gestão de Cacifos Inteligentes
 
-O **OmniVault** é um protótipo funcional desenvolvido como parte do projeto de modernização logística e transformação digital do sistema de parqueamento e distribuição urbana da cidade de Vilar. 
+O **OmniVault** é um protótipo funcional desenvolvido como parte de um projeto de modernização logística e transformação digital para a distribuição urbana e gestão de encomendas de última milha (*last-mile delivery*). 
 
-Esta aplicação simula o ecossistema completo de interação entre estafetas e clientes finais num cenário de cacifos inteligentes (*Smart Lockers*), validando a integração lógica de componentes IoT e serviços automatizados de notificação.
+Esta aplicação simula o ecossistema completo de interação entre estafetas e clientes finais num cenário de cacifos inteligentes (*Smart Lockers*), validando a integração lógica de componentes de software e simulação de serviços automatizados.
 
 ---
 
@@ -10,7 +10,8 @@ Esta aplicação simula o ecossistema completo de interação entre estafetas e 
 
 O protótipo foi estruturado seguindo o padrão de **Arquitetura em 3 Camadas**, implementado inteiramente *client-side* como uma Single Page Application (SPA):
 
-1. **Camada de Apresentação (UI):** - Interface semântica em HTML5 e estilização modular em CSS3.
+1. **Camada de Apresentação (UI):**
+   - Interface semântica em HTML5 e estilização modular em CSS3.
    - Alternância dinâmica de perfis (*Área do Estafeta* e *Área do Cliente*) sem recarregamento de página.
    - Consola de monitorização de logs integrada no rodapé para simular o comportamento de um terminal de administração.
 
@@ -37,9 +38,11 @@ O ciclo de vida de cada cacifo dentro do sistema segue rigorosamente o modelo de
 
 A cobertura funcional do sistema foi validada e auditada recorrendo a testes automatizados com o **Katalon Recorder**, estruturados na suite `OmniVaultSuite`:
 
-* **Cenário de Sucesso (Happy Path):** Autenticação do operador -> Reserva de cacifo por volumetria -> Confirmação de depósito -> Captura do token via simulação de SMS -> Levantamento e libertação de estado por parte do cliente.
+* **Cenário de Sucesso (Happy Path):** Autenticação do operador -> Reserva de cacifo por volumetria -> Confirmação de depósito -> Captura do token via consola de logs -> Levantamento e libertação de estado por parte do cliente.
 * **Cenários de Exceção:** - Tratamento e bloqueio de credenciais inválidas na autenticação do estafeta.
-  - Rejeição de tokens incorretos ou já expirados no ecrã de levantamento do cliente.
+  - Rejeição de tokens incorretos no ecrã de levantamento do cliente.
+
+*Nota: A suite de testes inclui uma rotina automatizada inicial (`runScript` -> `localStorage.clear();`) executada logo após a abertura da aplicação. Esta rotina garante o reset completo do estado dos cacifos no browser, permitindo a reprodutibilidade integral e consistente dos testes de forma 100% isolada e sem interferência de execuções anteriores.*
 
 ---
 
