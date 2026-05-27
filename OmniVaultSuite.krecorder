@@ -11,18 +11,20 @@
 <tr><td rowspan="1" colspan="3" data-tags="">FluxoEntrega</td></tr>
 </thead>
 <tbody>
-<tr><td>open</td><td>https://mirandafilipe31.github.io/OmniVault/<datalist><option>https://mirandafilipe31.github.io/OmniVault/</option></datalist></td><td></td></tr>
-<tr><td>type</td><td>id=input-username<datalist><option>id=input-username</option></datalist></td><td>estafeta1</td></tr>
-<tr><td>type</td><td>id=input-password<datalist><option>id=input-password</option></datalist></td><td>passwordetft1</td></tr>
-<tr><td>click</td><td>id=btn-login-submit<datalist><option>id=btn-login-submit</option></datalist></td><td></td></tr>
-<tr><td>click</td><td>id=btn-size-m<datalist><option>id=btn-size-m</option></datalist></td><td></td></tr>
-<tr><td>click</td><td>id=btn-confirm-deposit<datalist><option>id=btn-confirm-deposit</option></datalist></td><td></td></tr>
-<tr><td>storeText</td><td>id=sms-message-text<datalist><option>id=sms-message-text</option></datalist></td><td>textoSMS</td></tr>
-<tr><td>click</td><td>id=btn-close-modal<datalist><option>id=btn-close-modal</option></datalist></td><td></td></tr>
-<tr><td>click</td><td>id=btn-profile-cliente<datalist><option>id=btn-profile-client</option><option>id=btn-profile-cliente</option></datalist></td><td></td></tr>
-<tr><td>type</td><td>id=input-client-pin<datalist><option>id=input-client-pin</option></datalist></td><td>javascript{storedVars['textoSMS'].match(/\d{6}/)[0]}</td></tr>
-<tr><td>click</td><td>id=btn-validate-pin<datalist><option>id=btn-validate-pin</option></datalist></td><td></td></tr>
-<tr><td>click</td><td>id=btn-confirm-collection<datalist><option>id=btn-confirm-collection</option></datalist></td><td></td></tr>
+<tr><td>open</td><td>https://mirandafilipe31.github.io/OmniVault/<datalist></datalist></td><td></td></tr>
+<tr><td>runScript</td><td>localStorage.clear();<datalist><option>localStorage.clear();</option></datalist></td><td></td></tr>
+<tr><td>refresh</td><td><datalist></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=input-username<datalist></datalist></td><td>estafeta1</td></tr>
+<tr><td>type</td><td>id=input-password<datalist></datalist></td><td>passwordetft1</td></tr>
+<tr><td>click</td><td>id=btn-login-submit<datalist></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=btn-size-m<datalist></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=btn-confirm-deposit<datalist></datalist></td><td></td></tr>
+<tr><td>storeText</td><td>id=sms-message-text<datalist></datalist></td><td>textoSMS</td></tr>
+<tr><td>click</td><td>id=btn-close-modal<datalist></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=btn-profile-cliente<datalist></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=input-client-pin<datalist></datalist></td><td>javascript{storedVars['textoSMS'].match(/\d{6}/)[0]}</td></tr>
+<tr><td>click</td><td>id=btn-validate-pin<datalist></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=btn-confirm-collection<datalist></datalist></td><td></td></tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
